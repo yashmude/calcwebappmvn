@@ -1,14 +1,11 @@
-pipeline {
-    
+pipeline {   
     agent {
         label 'linux' 
     }
-    
     tools {
         maven 'xyz-maven'
         dockerTool 'my-docker'
     }
-    
     stages {
         stage('Git Checkout') {
             steps {
@@ -17,7 +14,6 @@ pipeline {
 		            sh 'ls -la'
             }
         }
-        
             stage('Package') {
                 steps {
 					sh 'ls -la'
@@ -27,7 +23,6 @@ pipeline {
     		            sh  'ls -la'
                 }
             }
-        
         stage('docker') {
             steps {
 				sh 'docker ps'
@@ -44,7 +39,6 @@ pipeline {
 		           //     echo "Publishing JUnit reports"
             }
         }
-        
 //         stage('Jacoco Reports') {
 //             steps {
 //                   jacoco()
@@ -62,13 +56,11 @@ pipeline {
 //         }
     }
     post {
-        
         success {
             echo 'This will run only if successful'
         }
         failure {
             echo 'This will run only if failed'
         }
-    
     }
 }
