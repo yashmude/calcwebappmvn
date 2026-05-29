@@ -97,6 +97,20 @@ pipeline {
             }
         }
 
+        stage('get all resources') {
+            steps {
+
+                sh 'kubectl get all'
+                echo "Verified access to EKS cluster successfully!!"
+
+                //sh 'kubectl apply -f k8s-deployment.yaml'
+                //echo "Application Deployed to EKS Successfully!!"
+            }
+
+
+
+
+
 
     }
 
