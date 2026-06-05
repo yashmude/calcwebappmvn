@@ -54,11 +54,11 @@ pipeline {
  
          stage('Package Application .war') {
             steps {
-                dir('src'){
+                
                 sh 'mvn clean package -DskipTests'
                  echo "Maven Package Goal Executed Successfully!";
                  sh 'ls -la'
-                }
+                
            }
         }
         // stage('docker image build') {
