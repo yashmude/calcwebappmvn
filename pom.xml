@@ -11,8 +11,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 
 	<dependencies>
@@ -58,7 +58,7 @@
 				<configuration>
 					<includeTests>true</includeTests>
 					<minimumTokens>10</minimumTokens>
-					<targetJdk>21</targetJdk>
+					<targetJdk>17</targetJdk>
 					<rulesets>
 						<ruleset>/category/java/bestpractices.xml</ruleset>
 						<ruleset>/category/java/codestyle.xml</ruleset>
@@ -86,7 +86,7 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.12.1</version>
 					<configuration>
-						<release>21</release>
+						<release>17</release>
 					</configuration>
 				</plugin>
 		
