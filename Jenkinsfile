@@ -7,10 +7,10 @@ pipeline {
         Region = "eu-central-1"
        // IMAGE_NAME = "calcwebappmvn:v1"
         //my_aws_access = credentials('my-aws-cred')
-    }
-    tools {
-        maven 'ash-maven'
-    }
+   }
+//  tools {
+ //       maven 'ash-maven'
+   // }
 
     stages {
 
@@ -49,14 +49,14 @@ pipeline {
         //     }
         // }
  
-        stage('Package Application .war') {
-            steps {
-                sh 'ls -la'
-                sh 'mvn clean'
-                sh 'mvn package'
-                echo "Maven Package Goal Executed Successfully!";
-                sh 'ls -la'
-            }
+        // stage('Package Application .war') {
+           // steps {
+             //   sh 'ls -la'
+               // sh 'mvn clean'
+               // sh 'mvn package'
+                // echo "Maven Package Goal Executed Successfully!";
+                // sh 'ls -la'
+           // }
         // }
         // stage('docker image build') {
         //     steps {
