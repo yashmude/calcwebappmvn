@@ -54,7 +54,7 @@ pipeline {
  
          stage('Package Application .war') {
             steps {
-                
+                 echo JAVA_HOME=$JAVA_HOME
                 sh 'mvn clean package -DskipTests'
                  echo "Maven Package Goal Executed Successfully!";
                  sh 'ls -la'
