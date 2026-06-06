@@ -60,20 +60,20 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        // stage('docker image build') {
-        //     steps {
-        //         sh 'which docker'
-        //         sh 'docker --version'
-        //         sh 'docker ps'
-        //         sh 'docker images'
-        //         //sh 'docker rmi -f ${docker images -q}'
-        //         //docker system prune -a
-        //         // sh 'docker build -t calcwebappmvn:v1 .' 
-        //         sh 'docker build -t ${IMAGE_NAME} .'
-        //         echo "Docker Image Built Successfully!!"
-        //         sh 'docker images'
-        //     }
-        // }
+        stage('docker image build') {
+            steps {
+                sh 'which docker'
+                sh 'docker --version'
+                sh 'docker ps'
+                sh 'docker images'
+                //sh 'docker rmi -f ${docker images -q}'
+                //docker system prune -a
+                // sh 'docker build -t calcwebappmvn:v1 .' 
+                sh 'docker build -t ${IMAGE_NAME} .'
+                echo "Docker Image Built Successfully!!"
+                sh 'docker images'
+            }
+        }
 
         // stage('ECRLogin') {
         //     steps {
