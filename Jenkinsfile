@@ -5,15 +5,12 @@ pipeline {
     environment {
       //  cluster_name = "my-cluster-1"
         Region = "eu-central-1"
-        JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-        PATH="${JAVA_HOME}/bin:${env.PATH}"
-        
        // IMAGE_NAME = "calcwebappmvn:v1"
         //my_aws_access = credentials('my-aws-cred')
-   }
-  tools {
+    }
+    tools {
         maven 'ash-maven'
-   }
+    }
 
     stages {
 
@@ -25,13 +22,13 @@ pipeline {
             }
         }
 
-        // stage('SonarQube analysis') {
-        //     steps {
-        //         withSonarQubeEnv('sonar') {
-        //             sh 'mvn clean verify sonar:sonar'
-        //         }
-        //     }
-        // }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh 'mvn clean verify sonar:sonar'
+                }
+            }
+        }
 
         // stage('Quality Gate') {
         //     steps {
@@ -52,16 +49,14 @@ pipeline {
         //     }
         // }
  
-         stage('Package Application .war') {
+        stage('Package Application .war') {
             steps {
-                  sh '''
-        echo JAVA_HOME=$JAVA_HOME
-        '''
-                sh 'mvn clean package -DskipTests'
-                 echo "Maven Package Goal Executed Successfully!";
-                 sh 'ls -la'
-                
-           }
+                sh 'ls -la'
+                sh 'mvn clean'
+                sh 'mvn package'
+                echo "Maven Package Goal Executed Successfully!";
+                sh 'ls -la'
+            }
         }
         // stage('docker image build') {
         //     steps {
@@ -95,7 +90,7 @@ pipeline {
         //         echo "Docker Image Pushed to ECR Successfully!!"
         //     }
         // }
-
+    
 
         // stage('kubeconfig setup') {
         //     steps {
@@ -142,6 +137,7 @@ pipeline {
 
 
 
+
     }
 
 
@@ -155,3 +151,4 @@ pipeline {
         }
     }
 }
+
