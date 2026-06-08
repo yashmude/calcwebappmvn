@@ -3,12 +3,12 @@ pipeline {
         label 'ag-1'
     }
     environment {
-        // cluster_name = "my-cluster-1"
+        cluster_name = "my-cluster-1"
          Region = "eu-central-1"
         JAVA_HOME= "/usr/lib/jvm/java-17-openjdk-amd64"
         PATH="${JAVA_HOME}/bin:${env.PATH}"
          IMAGE_NAME = "calcwebappmvn:v1"
-        // my_aws_access = credentials('my-aws-cred')
+        my_aws_access = credentials('my-aws-cred')
     }
     tools {
         maven 'ash-maven'
