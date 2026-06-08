@@ -3,12 +3,12 @@ pipeline {
         label 'ag-1'
     }
     environment {
-        cluster_name = "my-cluster-1"
+        cluster_name = "ash-cluster-1"
          Region = "eu-central-1"
         JAVA_HOME= "/usr/lib/jvm/java-17-openjdk-amd64"
         PATH="${JAVA_HOME}/bin:${env.PATH}"
          IMAGE_NAME = "calcwebappmvn:v1"
-        my_aws_access = credentials('my-aws-cred')
+        my_aws_access = credentials('ash-aws-cred')
     }
     tools {
         maven 'ash-maven'
@@ -75,23 +75,23 @@ pipeline {
             }
         }
 
-        // stage('ECRLogin') {
-        //     steps {
-        //         sh 'aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 964742912902.dkr.ecr.us-west-2.amazonaws.com'
-        //         echo "Logged in to AWS ECR Successfully!!"
+        stage('ECRLogin') {
+            steps {
+                sh 'aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 777095948522.dkr.ecr.eu-central-1.amazonaws.com'
+                echo "Logged in to AWS ECR Successfully!!"
 
-        //         sh 'docker tag ${IMAGE_NAME} 964742912902.dkr.ecr.us-west-2.amazonaws.com/dev/calculator:v1'
-        //         echo "Docker Image Tagged Successfully!!"
-        //         sh 'docker images'
-        //     }
-        // }
+                sh 'docker tag ${IMAGE_NAME} 777095948522.dkr.ecr.eu-central-1.amazonaws.com/dev/calculator:v1'
+                echo "Docker Image Tagged Successfully!!"
+                sh 'docker images'
+            }
+        }
 
-        // stage('Push to ECR') {
-        //     steps {
-        //         sh 'docker push 964742912902.dkr.ecr.us-west-2.amazonaws.com/dev/calculator:v1'
-        //         echo "Docker Image Pushed to ECR Successfully!!"
-        //     }
-        // }
+        stage('Push to ECR') {
+            steps {
+                sh 'docker push 777095948522.dkr.ecr.eu-central-1.amazonaws.com/dev/calculator:v1'
+                echo "Docker Image Pushed to ECR Successfully!!"
+            }
+        }
 
 
         // stage('kubeconfig setup') {
