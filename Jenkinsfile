@@ -94,30 +94,30 @@ pipeline {
         }
 
 
-        // stage('kubeconfig setup') {
-        //     steps {
-        //         sh 'aws eks update-kubeconfig --region ${Region} --name ${cluster_name}'
-        //         // sh '''kubectl create secret docker-registry my-ecr-secret-cbz \
-        //         //       --docker-server=964742912902.dkr.ecr.${Region}.amazonaws.com \
-        //         //       --docker-username=AWS \
-        //         //       --docker-password=$(aws ecr get-login-password --region ${Region})'''
+        stage('kubeconfig setup') {
+            steps {
+                sh 'aws eks update-kubeconfig --region ${Region} --name ${cluster_name}'
+                sh '''kubectl create secret docker-registry my-ecr-secret-cbz \
+                      --docker-server=777095948522.dkr.ecr.${Region}.amazonaws.com \
+                      --docker-username=AWS \
+                      --docker-password=$(aws ecr get-login-password --region ${Region})'''
 
                 
-        //         echo "Kubeconfig setup and secret creation completed successfully!!"
-        //     }
-        // }
+                echo "Kubeconfig setup and secret creation completed successfully!!"
+            }
+        }
 
-        // stage('get all resources') {
-        //     steps {
+        stage('get all resources') {
+            steps {
 
-        //         sh 'kubectl get all'
-        //         sh 'kubectl get secrets'
-        //         echo "Verified access to EKS cluster successfully!!"
+                sh 'kubectl get all'
+                sh 'kubectl get secrets'
+                echo "Verified access to EKS cluster successfully!!"
 
-        //         //sh 'kubectl apply -f k8s-deployment.yaml'
-        //         //echo "Application Deployed to EKS Successfully!!"
-        //     }
-        // }
+                //sh 'kubectl apply -f k8s-deployment.yaml'
+                //echo "Application Deployed to EKS Successfully!!"
+            }
+        }
 
         // stage('deploy to eks') {
         //     steps {
