@@ -1,12 +1,12 @@
 pipeline {
     agent {
-        label 'ag-2' 
+        label 'ag-1' 
         }
     environment {
-        my_aws_access= credentials('my-aws-cred')
+        my_aws_access= credentials('ash-aws-cred')
     }
     tools {
-        terraform 'tf-install'
+        terraform 'TF-install'
     }
     stages {
         stage('Terraform Init') {
